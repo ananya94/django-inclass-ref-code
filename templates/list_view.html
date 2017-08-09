@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+  {% block content %}
+    {{block.super}}
+      <h1>List View</h1>
+      {% for products in object %}
+        <p>{{products.title}}</p>
+        <p>{{products.description}}</p>
+        <p>{{products.price}}</p>
+      {% endfor %}
+  {% endblock content %}

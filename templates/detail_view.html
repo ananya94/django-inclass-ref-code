@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+{% extends "base.html" %}
+
+  {% block content %}
+  {{block.super}}
     <h1>Hello There From Coding Temple and Django</h1>
 
-  {% for i in object %}
-    <p>{{ i.title }}</p>
-    <p>{{i.description}}</p>
-    <p>{{i.price}}</p>
-  {% endfor %}
-  </body>
-</html>
+    <p>{{ object.title }}</p>
+    <p>{{object.description}}</p>
+    <p>{{object.price}}</p>
+  {% endblock content %}
