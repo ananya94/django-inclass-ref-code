@@ -4,7 +4,35 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .models import Product
 
-from .forms import ProductAddForm
+from .forms import ProductAddForm,ProductUpdateForm
+
+def slug_update_view(request,slug=None):
+    try:
+        product = get_object_or_404(Product,slug = slug)
+    except:
+        product = Product.objects.filter(slug=slug).orderby("title").first()
+    form = ProductUpdateForm(request.POST or None, instance=product)
+    template = "update_view.html"
+    context = {
+        "form":form,
+        "object":product
+    }
+    return render(request,template,context)
+
+def update_view(request,object_id=None):
+    print(request)
+    product = get_object_or_404(Product,id = object_id)
+    form = ProductUpdateForm(request.POST or None,instance=product)
+    if form.is_valid():
+        print(form.cleaned_data.get("publish"))
+        instance = form.save(commit=False)
+        instance.save()
+    template = "update_view.html"
+    context = {
+        "object":product,
+        "form":form,
+    }
+    return render(request,template,context)
 
 def create_view(request):
     print(request.POST)
