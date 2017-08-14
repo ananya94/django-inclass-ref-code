@@ -6,6 +6,34 @@ from .models import Product
 
 from .forms import ProductAddForm,ProductUpdateForm
 
+######## CLASS BASED VIEWS START #########
+
+# Classbased View Imports
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
+
+# TODO Create Mixin for SlugView for ClassBased Views
+
+# Mixin import
+from django_digital.mixins import ProductSlugMixin
+
+
+class ProductDetailView(ProductSlugMixin,DetailView):
+    model = Product
+
+    def get_context_data(self,**kwargs):
+        context = super(ProductDetailView,self).get_context_data(**kwargs)
+        print(context)
+        return context
+
+class ProductListView(ListView):
+    model = Product
+    context_object_name = "someother_list"  # This will specify a specific name for the "object_list" if desired.
+    def get_queryset(self,*args,**kwargs):
+        queryset = super(ProductListView,self).get_queryset(**kwargs)
+        return queryset
+######## CLASS BASED VIEWS END ##########
+
 def slug_update_view(request,slug=None):
     try:
         product = get_object_or_404(Product,slug = slug)
