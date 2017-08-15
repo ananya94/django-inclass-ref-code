@@ -54,6 +54,7 @@ def update_view(request,object_id=None):
     if form.is_valid():
         print(form.cleaned_data.get("publish"))
         instance = form.save(commit=False)
+        print(instance)
         instance.save()
     template = "update_view.html"
     context = {

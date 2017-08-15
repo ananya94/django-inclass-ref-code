@@ -44,18 +44,18 @@ class ProductUpdateForm(forms.ModelForm):
         ]
 
 
-        def clean_price(self):
-            price = self.cleaned_data.get("price")
-            if price < 1.00:
-                raise forms.ValidationError("Your Price Must Be Greater than a $1.00")
-            elif price > 1000.00:
-                raise forms.ValidationError("Your Price Must NOT be Greater than $1,000.00")
-            else:
-                return price
+    def clean_price(self):
+        price = self.cleaned_data.get("price")
+        if price < 1.00:
+            raise forms.ValidationError("Your Price Must Be Greater than a $1.00")
+        elif price > 1000.00:
+            raise forms.ValidationError("Your Price Must NOT be Greater than $1,000.00")
+        else:
+            return price
 
-        def clean_title(self):
-            title = self.cleaned_data.get("title")
-            if len(title) > 3:
-                return title
-            else:
-                raise forms.ValidationError("Your Title Must Be at least 3 Characters Long!")
+    def clean_title(self):
+        title = self.cleaned_data.get("title")
+        if len(title) > 3:
+            return title
+        else:
+            raise forms.ValidationError("Your Title Must Be at least 3 Characters Long!")

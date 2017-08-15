@@ -77,3 +77,8 @@ Delete -- delete item from database -- DELETE
 
 List -- list all items from database (or a queryset)
 Search -- search items from the database
+
+
+# Authentication
+
+To start, activate your conda environment (activate python-june). Then install django-allauth (pip install django-allauth), django-crispy-forms (pip install --upgrade django-crispy-forms) and sendgrid-django(pip install sendgrid-django).

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Product, Variation
+from .models import Product, Variation, ProductImage
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['__str__','description','price','sale_price']
@@ -15,5 +15,9 @@ class ProductAdmin(admin.ModelAdmin):
 class VariationAdmin(admin.ModelAdmin):
     list_display = ["__str__","product"]
 
+class ProductImageAdmin(admin.ModelAdmin):
+    list_display = ["__str__","product"]
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Variation,VariationAdmin)
+admin.site.register(ProductImage)

@@ -13,13 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import url,include
 from django.contrib import admin
 
 from products import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # Django All Auth URL
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^create/$',views.create_view,name ="create_view"),
     url(r'^update/(?P<object_id>\d+)$',views.update_view,name ="update_view"),
     #### Class Based Views URLS  Start###
@@ -32,3 +36,7 @@ urlpatterns = [
     url(r'^detail/(?P<slug>[\w-]+)$',views.detail_slug_view,name ="detail_slug_view"),
     url(r'^list/$',views.list_view,name="list_view"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

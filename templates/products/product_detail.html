@@ -1,7 +1,21 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
   <h1>Product: {{object.title}}</h1>
+  {% if object.productimage_set.count > 0 %}
+
+    <div>
+    {% for img in object.productimage_set.all %}
+
+
+    <img class='img-responsive' src='{{ img.image.url }}' />
+
+    {% endfor %}
+
+    </div>
+
+    {% endif %}
   <p>{{object.description}}</p>
   <p>{{object.price}}</p>
 
