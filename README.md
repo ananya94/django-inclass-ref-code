@@ -82,3 +82,23 @@ Search -- search items from the database
 # Authentication
 
 To start, activate your conda environment (activate python-june). Then install django-allauth (pip install django-allauth), django-crispy-forms (pip install --upgrade django-crispy-forms) and sendgrid-django(pip install sendgrid-django).
+
+
+# Checkpoint - 6
+
+### Modified files
+
+modified:   django_digital/__pycache__/settings.cpython-36.pyc
+modified:   django_digital/__pycache__/urls.cpython-36.pyc
+**modified:   django_digital/settings.py**
+**modified:   django_digital/urls.py**
+modified:   products/__pycache__/models.cpython-36.pyc
+**modified:   products/models.py**
+**modified:   templates/base.html**
+**modified:   templates/products/product_detail.html**
+**modified:   templates/products/product_list.html**
+
+### Added files
+
+**carts/**
+**templates/cart/**
