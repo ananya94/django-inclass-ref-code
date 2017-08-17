@@ -1,32 +1,40 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block content %}
-  <h1>Product: {{object.title}}</h1>
-  {% if object.productimage_set.count > 0 %}
+  {% block content %}
+  <div class="row">
 
-    <div>
-    {% for img in object.productimage_set.all %}
+    <div class="col-md-8">
+    <h1>Product: {{object.title}}</h1>
+    {% if object.productimage_set.count > 0 %}
+
+      <div>
+      {% for img in object.productimage_set.all %}
 
 
-    <img class='img-responsive' src='{{ img.image.url }}' />
+      <img class='img-responsive' src='{{ img.image.url }}' />
 
-    {% endfor %}
-
-    </div>
-
-    {% endif %}
-  <p>{{object.description}}</p>
-  <p>{{object.price}}</p>
-
-  {% if object.variation_set.count >= 1 %}
-  <select class="" name="">
-    {% for vari_choice in object.variation_set.all %}
-        <option value="{{vari_choice.id}}">{{ vari_choice }}</option>
       {% endfor %}
-  </select>
-  {% else %}
-  <a href="#"><button type="button" class="btn btn-success" name="button">Add to Cart</button></a>
-  {% endif %}
 
+      </div>
+
+      {% endif %}
+    <p>{{object.description}}</p>
+  </div>
+  <div class="col-md-4">
+    <p>{{object.price}}</p>
+
+    {% if object.variation_set.count >= 1 %}
+    <form method = "GET" action = "{% url 'cart' %}">
+    <select class="" name="item">
+      {% for vari_choice in object.variation_set.all %}
+          <option value="{{vari_choice.id}}">{{ vari_choice }}</option>
+        {% endfor %}
+    </select>
+    {% else %}
+    {% endif %}
+    <input type="submit" name="" class="btn btn-success" value="Add to Cart"/>
+  </form>
+  </div>
+</div>
 {% endblock %}

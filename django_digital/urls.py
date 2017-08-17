@@ -19,6 +19,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 
 from products import views
+from carts.views import CartView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -35,6 +36,8 @@ urlpatterns = [
     url(r'^detail/(?P<object_id>\d+)$',views.detail_view,name ="detail_view"),
     url(r'^detail/(?P<slug>[\w-]+)$',views.detail_slug_view,name ="detail_slug_view"),
     url(r'^list/$',views.list_view,name="list_view"),
+        #Cart View
+    url(r'^cart/$',CartView.as_view(), name = "cart"),
 ]
 
 if settings.DEBUG:

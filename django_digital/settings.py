@@ -36,8 +36,8 @@ SENDGRID_API_KEY = 'SG.rHox6NWsRPyRAo4XY4jm6g.Q_vNoAI3i6GPrEDzU0JsuEmZYDfKgA_8WZ
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 
-send_mail("Your Subject", "This is a simple text email body.",
-  "Joel Carter <joelc@codingtemple.com>", ["joelc@codingtemple.com"])
+# send_mail("Your Subject", "This is a simple text email body.",
+#   "Joel Carter <joelc@codingtemple.com>", ["joelc@codingtemple.com"])
 
 # Application definition
 
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
 
     'products',
+    'carts',
 ]
 
 AUTHENTICATION_BACKENDS = (

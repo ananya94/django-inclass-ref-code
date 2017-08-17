@@ -3,9 +3,22 @@
   {% block content %}
     {{block.super}}
       <h1>List View</h1>
+
+
       {% for products in object_list %}
-        <a href="{{products.get_absolute_url}}"><p>{{products.title}}</p></a>
-        <p>{{products.description}}</p>
-        <p>{{products.price}}</p>
-      {% endfor %}
+        {% if products.productimage_set.count > 0 %}
+          <div class = "row">
+            <div class = "col-sm-6 col-md-4">
+              <div class="thumbnail">
+              {% for img in products.productimage_set.all %}
+                  <img class='img-responsive' src='{{ img.image.url }}' />
+                  {% endfor %}
+                  <a href="{{products.get_absolute_url}}" class="btn btn-primary"><p>{{products.title}}</p></a>
+                  <p>{{products.description}}</p>
+                  <p>{{products.price}}</p>
+                </div>
+                </div>
+              {% endif %}
+          {% endfor %}
+    </div>
   {% endblock content %}

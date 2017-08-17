@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<table class = "table">
+{{object}}
+{% for item in object.cartitem_set.all %}
+
+<tr>
+<form action= "." method = "GET">
+  <td>{{ item.item.get_title }}</td>
+  <input type='hidden' name='item' value='{{ item.item.id }}' />
+  <td><input type="number" name="qty" value="{{ item.quantity }}"><input type='submit' class='btn-update btn btn-link' value='Update item'/></td>
+
+  <td>{{ item.line_item_total}}</td>
+  <td class="text-right"><a href="{{item.remove}}">{{item.remove}}</a></td>
+</form>
+</tr>
+
+{% endfor %}
+
+<tr>
+<td colspan='4' class='text-right'>Subtotal: {{ object.update_subtotal }}</td>
+
+</tr>
+
+</table>
+{% endblock %}
