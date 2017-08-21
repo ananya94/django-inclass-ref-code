@@ -86,19 +86,50 @@ To start, activate your conda environment (activate python-june). Then install d
 
 # Checkpoint - 6
 
-### Modified files
+### Modified file:
 
-modified:   django_digital/__pycache__/settings.cpython-36.pyc
-modified:   django_digital/__pycache__/urls.cpython-36.pyc
-**modified:   django_digital/settings.py**
-**modified:   django_digital/urls.py**
-modified:   products/__pycache__/models.cpython-36.pyc
-**modified:   products/models.py**
-**modified:   templates/base.html**
-**modified:   templates/products/product_detail.html**
-**modified:   templates/products/product_list.html**
+modified:   carts/models.py
 
-### Added files
+### Lines of code changed:
+* Line 8
+* Lines 31-35
+* Lines 41-44
+* Lines 48-65
 
-**carts/**
-**templates/cart/**
+### Modified File:
+
+modified:   carts/views.py
+
+### Lines of code changed:
+* Lines 4-5
+* Lines 32-33
+* Lines 41-44
+* Lines 50-63
+
+### Modified File:
+
+modified:   templates/base.html
+
+### Lines of code changed:
+
+* Lines 7
+* Lines 46-59
+
+### Modified File:
+
+modified:   templates/cart/view.html
+
+### Lines of code changed:
+
+* Lines 25-35
+
+### Modified File:
+
+modified:   templates/products/product_detail.html
+
+### Lines of code changed:
+
+* Lines 4-30
+* Line 52
+* Line 56
+* Line 64

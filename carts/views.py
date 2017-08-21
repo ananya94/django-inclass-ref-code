@@ -1,7 +1,8 @@
 from django.shortcuts import render,get_object_or_404
 from django.views.generic.base import View
 
-from django.http import HttpResponseRedirect,Http404
+from django.http import HttpResponseRedirect,Http404,JsonResponse
+from django.core.urlresolvers import reverse
 from django.views.generic.detail import SingleObjectMixin
 from products.models import Variation
 from .models import Cart, CartItem
@@ -28,7 +29,8 @@ class CartView(SingleObjectMixin,View):
     def get(self,request,*args,**kwargs):
         cart = self.get_object()
         item_id = request.GET.get("item")
-        delete_item = request.GET.get("delete")
+        delete_item = request.GET.get("delete",False)
+        item_added = False
         if item_id:
             item_instance = get_object_or_404(Variation,id = item_id)
             qty = request.GET.get("qty",1) #Giving the quantity a default value of 1
@@ -37,13 +39,28 @@ class CartView(SingleObjectMixin,View):
                     delete_item = True
             except:
                 raise Http404
-            cart_item = CartItem.objects.get_or_create(cart=cart, item = item_instance)[0]
+            cart_item,created_item = CartItem.objects.get_or_create(cart=cart, item = item_instance)
+            if created_item:
+                item_added = True
             if delete_item:
                 cart_item.delete()
             else:
                 cart_item.quantity = qty
                 cart_item.save()
-                print(cart_item)
+            if not request.is_ajax():
+                return HttpResponseRedirect(reverse("cart"))
+        if request.is_ajax():
+            print(request.GET.get("item"))
+            try:
+                subtotal = cart_item.cart_subtotal
+            except:
+                subtotal = None
+            # data = {
+            #     "deleted":deleted_item,
+            #     "subtotal":subtotal,
+            # }
+            # return JsonResponse(data)
+            return JsonResponse({"deleted":delete_item,"created":item_added}) # Return a JSON Response.
         context = {
             "object":self.get_object()
         }

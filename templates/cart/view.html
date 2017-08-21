@@ -22,7 +22,17 @@
 {% endfor %}
 
 <tr>
-<td colspan='4' class='text-right'>Subtotal: {{ object.update_subtotal }}</td>
+<td colspan='4' class='text-right'>Subtotal: {{ object.subtotal }}</td>
+
+</tr>
+
+<tr>
+<td colspan='4' class='text-right'>tax-total (estimated): {{ object.tax_total }}</td>
+
+</tr>
+
+<tr>
+<td colspan='4' class='text-right'>total: {{ object.total }}</td>
 
 </tr>
 
