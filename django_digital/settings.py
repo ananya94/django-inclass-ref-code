@@ -54,9 +54,11 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+    'crispy_forms',
 
     'products',
     'carts',
+    'orders',
 ]
 
 AUTHENTICATION_BACKENDS = (
@@ -70,6 +72,8 @@ AUTHENTICATION_BACKENDS = (
 )
 
 SITE_ID = 1
+
+CRISPY_TEMPLATE_PACK = "bootstrap3"
 
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_EMAIL_REQUIRED = True
@@ -170,3 +174,11 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_pro","media_root")
+
+
+# BRAINTREE SETUP
+
+BRAINTREE_PUBLIC = 'r6k25wjjgrs85k5k'
+BRAINTREE_PRIVATE = '3e8a367a637ec65a728e2c17e582e6bb'
+BRAINTREE_MERCHANT_ID = '34hkzh8p357qypjk'
+ENVIRONMENT  = 'SANDBOX'

@@ -32,7 +32,7 @@ class Product(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("products_slug_view",kwargs = {"slug":self.slug})
+        return reverse("detail_slug_view",kwargs = {"slug":self.slug})
 
 def product_pre_save_reciever(sender,instance,*args,**kwargs): #Param_list: sender = Product, instance = Newly Created Product(eg AirJordan 3)
     print(sender)

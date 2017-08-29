@@ -5,7 +5,7 @@ from django.db import models
 # Create your models here.
 from products.models import Variation
 
-from django.db.models.signals import pre_save,post_save
+from django.db.models.signals import pre_save,post_save,post_delete
 
 class CartItem(models.Model):
     cart = models.ForeignKey("Cart")
@@ -32,6 +32,8 @@ def cart_item_post_save_receiver(sender,instance,*args,**kwargs):
     instance.cart.update_subtotal()
 
 post_save.connect(cart_item_post_save_receiver,sender = CartItem)
+
+post_delete.connect(cart_item_post_save_receiver, sender = CartItem)
 
 class Cart(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True)

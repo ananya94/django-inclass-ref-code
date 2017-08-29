@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbar">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="{% url 'products_list_view' %}">Products</a></li>
+                <li><a href="{% url 'product_list_view' %}">Products</a></li>
 
               </ul>
               <form class="navbar-form navbar-left" role="search">
@@ -48,6 +48,9 @@
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
+
+  <!--Braintree dropin UI JS -->
+  <script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function(){
